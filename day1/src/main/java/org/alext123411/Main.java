@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Please input file path name where we can find a list of  calories you got from elves.");
+        System.out.println("Please input file path where we can find a list of calories you got from elves.");
         Scanner filePathInput = new Scanner(System.in);
         String path = "";
 
