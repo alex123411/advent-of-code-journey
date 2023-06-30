@@ -7,10 +7,13 @@ import java.util.*;
 public class Day4 {
 
     private static final String inputPath = "C:\\Users\\alext\\Documents\\GitHub\\advent-of-code-journey\\day4\\src\\main\\java\\org\\alex123411\\input.txt";
+    private static List<String> input;
 
-    public void part1() throws FileNotFoundException {
-        List<String> input = readInputFile();
+    Day4() throws FileNotFoundException {
+        input = readInputFile();
+    }
 
+    public void part1() {
         int res = 0;
 
         for (String s : input) {
@@ -24,16 +27,14 @@ public class Day4 {
             int secondIntervalStart = Integer.parseInt(secondIntervalIndexes[0]);
             int secondIntervalEnd = Integer.parseInt(secondIntervalIndexes[1]);
 
-            if(firstIntervalStart <= secondIntervalStart && firstIntervalEnd >= secondIntervalEnd) res++;
-            else if(firstIntervalStart >= secondIntervalStart && firstIntervalEnd <= secondIntervalEnd) res++;
+            if (firstIntervalStart <= secondIntervalStart && firstIntervalEnd >= secondIntervalEnd) res++;
+            else if (firstIntervalStart >= secondIntervalStart && firstIntervalEnd <= secondIntervalEnd) res++;
         }
 
         System.out.println("Result: " + res);
     }
 
-    public void part2() throws FileNotFoundException {
-        List<String> input = readInputFile();
-
+    public void part2() {
         int res = 0;
 
         for (String s : input) {
@@ -47,28 +48,20 @@ public class Day4 {
             int secondIntervalStart = Integer.parseInt(secondIntervalIndexes[0]);
             int secondIntervalEnd = Integer.parseInt(secondIntervalIndexes[1]);
 
-            if(intervalContainsPoint(firstIntervalStart, secondIntervalStart, secondIntervalEnd)) res++;
-            else if(intervalContainsPoint(firstIntervalEnd, secondIntervalStart, secondIntervalEnd)) res++;
-            else if(intervalContainsPoint(secondIntervalStart, firstIntervalStart, firstIntervalEnd)) res++;
-            else if(intervalContainsPoint(secondIntervalEnd, firstIntervalStart, firstIntervalEnd)) res++;
-
+            if (intervalContainsPoint(firstIntervalStart, secondIntervalStart, secondIntervalEnd)) res++;
+            else if (intervalContainsPoint(firstIntervalEnd, secondIntervalStart, secondIntervalEnd)) res++;
+            else if (intervalContainsPoint(secondIntervalStart, firstIntervalStart, firstIntervalEnd)) res++;
+            else if (intervalContainsPoint(secondIntervalEnd, firstIntervalStart, firstIntervalEnd)) res++;
         }
 
         System.out.println("Result: " + res);
     }
 
-    private boolean intervalContainsPoint(int point, int intervalStart, int intervalEnd){
+    private boolean intervalContainsPoint(int point, int intervalStart, int intervalEnd) {
         return intervalStart <= point && point <= intervalEnd;
     }
 
-    public int getAlphabeticCounter(char c) {
-        char uppercaseC = Character.toUpperCase(c);
-
-        int alphabeticCounter = uppercaseC - 'A' + 1;
-        return alphabeticCounter + (Character.isUpperCase(c) ? 26 : 0);
-    }
-
-    private List<String> readInputFile() throws FileNotFoundException {
+    private static List<String> readInputFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(inputPath));
         List<String> input = new ArrayList<>();
 
