@@ -38,13 +38,27 @@ public class Day3 {
     public void part2() throws FileNotFoundException {
         List<String> input = readInputFile();
 
-        System.out.println("Result: " + "");
+        int res = 0;
+        for (int i = 0; i < input.size(); i += 3)
+            res += findCommonCharacter(input.get(i), input.get(i + 1), input.get(i + 2));
+
+        System.out.println("Result: " + res);
+    }
+
+    public static int findCommonCharacter(String s1, String s2, String s3) {
+        for (int i = 0; i < s1.length(); i++) {
+            char currentChar = s1.charAt(i);
+            if (s2.indexOf(currentChar) != -1 && s3.indexOf(currentChar) != -1) {
+                return getAlphabeticCounter(currentChar);
+            }
+        }
+        System.out.println("NOT FOUND");
+        return 0; // If no common character is found
     }
 
     public static int getAlphabeticCounter(char c) {
-        char uppercaseC = Character.toUpperCase(c);
-
-        int alphabeticCounter = uppercaseC - 'A' + 1;
+        char uppercaseChar = Character.toUpperCase(c);
+        int alphabeticCounter = uppercaseChar - 'A' + 1;
         return alphabeticCounter + (Character.isUpperCase(c) ? 26 : 0);
     }
 
